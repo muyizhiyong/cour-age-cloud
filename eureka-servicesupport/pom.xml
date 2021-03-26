@@ -6,7 +6,7 @@
 
   <groupId>com.muyi.courage</groupId>
   <artifactId>eureka-servicesupport</artifactId>
-  <packaging>pom</packaging>
+<!--  <packaging>pom</packaging>-->
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>servicesupport-api</module>
