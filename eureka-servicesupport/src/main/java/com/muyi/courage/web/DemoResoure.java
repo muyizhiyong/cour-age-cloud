@@ -2,7 +2,6 @@ package com.muyi.courage.web;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author 杨志勇

@@ -12,9 +12,9 @@ import org.springframework.context.annotation.Configuration;
  * @author 杨志勇
  * @date 2021-03-22 11:15
  */
-@SpringBootApplication(scanBasePackages ="com.muyi.courage")
-@EnableDiscoveryClient
 
+@SpringBootApplication(scanBasePackages="com.muyi.courage")
+@EnableDiscoveryClient
 public class EurekaServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(EurekaServiceApplication.class,args);
