@@ -8,5 +8,11 @@
 - 该项目采用maven构建
 
 #依赖
-- springBoot 2.3.1
-- springCloud Hoxton.SR7
+Spring Cloud Version : 2020.0
+Spring Cloud Alibaba Version : 2021.1
+Spring Boot Version : 2.4.2.RELEASE
+Sentinel Version: 1.8.0
+Nacos Version : 1.4.1
+RocketMQ Version : 4.4.0
+Dubbo Version : 2.7.8
+Seata Version : 1.3.0
