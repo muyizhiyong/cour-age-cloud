@@ -1,8 +1,8 @@
 package com.muyi.courage.auth.web;
 
+import com.muyi.courage.common.dto.DTO;
 import com.muyi.courage.auth.dto.LoginResultDTO;
 import com.muyi.courage.auth.dto.UserDTO;
-import com.muyi.courage.common.dto.DTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,0 +1,53 @@
+server:
+  port: 9091
+
+spring:
+  application:
+    name: cour-gate
+  profiles:
+    active: dev
+  redis:
+    database: 0
+    host: 47.100.115.11
+    port: 6379
+    password: root123
+    timeout: 60000 #连接超时时间（毫秒））
+    lettuce:
+      shutdown-timeout: 300ms #关闭超时
+      pool:
+        max-active: 600 # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1  # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10  # 连接池中的最大空闲连接
+        min-idle: 1   # 连接池中的最小空闲连接
+  cloud:
+    inetutils:
+      preferred-networks: 10
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway: # 是否与服务发现组件进行结合，通过 serviceId(必须设置成大写) 转发到具体的服务实例。默认为false，设为true便开启通过服务中心的自动根据 serviceId 创建路由的功能。
+      discovery:
+        locator: # 路由访问方式：http://Gateway_HOST:Gateway_PORT/大写的serviceId/**，其中微服务应用名默认大写访问。
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: cour-auth
+        uri: lb://cour-auth
+        predicates:
+        - Path=/auth/**
+        filters:
+        - StripPrefix=1
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: 'http://localhost:9091/rsa/publicKey' #配置RSA的公钥访问地址
+  sentinel:
+    transport:
+      dashboard: 127.0.0.1:8080
+secure:
+  ignore:
+    urls: #配置白名单路径
+      - "/actuator/**"
+      - "/auth/**"

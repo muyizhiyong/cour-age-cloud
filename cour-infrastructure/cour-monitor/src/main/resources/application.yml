@@ -1,6 +1,6 @@
 spring:
     application:
-        name: ace-monitor
+        name: cour-monitor
     cloud:
       nacos:
         discovery:

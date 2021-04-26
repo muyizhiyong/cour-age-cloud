@@ -2,12 +2,12 @@ package com.muyi.courage.auth.web.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.muyi.courage.common.dto.DTO;
 import com.muyi.courage.auth.dto.LoginResultDTO;
 import com.muyi.courage.auth.dto.UserDTO;
 import com.muyi.courage.auth.service.LoginService;
-import com.muyi.courage.auth.web.LoginResource;
-import com.muyi.courage.common.dto.DTO;
 import com.muyi.courage.common.util.RetCodeEnum;
+import com.muyi.courage.auth.web.LoginResource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;

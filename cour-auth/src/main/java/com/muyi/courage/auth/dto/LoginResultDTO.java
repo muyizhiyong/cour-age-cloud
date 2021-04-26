@@ -1,7 +1,7 @@
 package com.muyi.courage.auth.dto;
 
-import com.muyi.courage.common.dto.DTO;
 import com.muyi.courage.common.util.RetCodeEnum;
+import com.muyi.courage.common.dto.DTO;
 import lombok.Getter;
 import lombok.Setter;
 

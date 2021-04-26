@@ -1,12 +1,12 @@
 server:
-  port: 18881
+  port: 9092
 spring:
   application:
     name: cour-auth
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: 127.0.0.1:8848
   redis:
     database: 0
     host: 47.100.115.11
@@ -25,7 +25,7 @@ spring:
       url: jdbc:mysql://47.100.115.11:3306/courage?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
       username: root
       password: root
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       hikari:
         minimum-idle: 10
         maximum-pool-size: 60
