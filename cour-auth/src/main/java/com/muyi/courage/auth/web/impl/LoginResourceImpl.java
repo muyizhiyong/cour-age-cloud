@@ -1,7 +1,9 @@
 package com.muyi.courage.auth.web.impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.nacos.common.utils.ExceptionUtil;
 import com.muyi.courage.common.dto.DTO;
 import com.muyi.courage.auth.dto.LoginResultDTO;
 import com.muyi.courage.auth.dto.UserDTO;
@@ -53,6 +55,7 @@ public class LoginResourceImpl implements LoginResource {
     ConsumerTokenServices tokenServices;
 
     @Override
+    @SentinelResource(value = "authLogin", blockHandler = "handleException", blockHandlerClass = {ExceptionUtil.class})
     public LoginResultDTO authLogin(UserDTO user) {
         LoginResultDTO loginResultDTO = new LoginResultDTO(RetCodeEnum.FAIL);
 

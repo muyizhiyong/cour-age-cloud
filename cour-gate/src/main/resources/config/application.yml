@@ -22,6 +22,9 @@ spring:
   cloud:
     inetutils:
       preferred-networks: 10
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
@@ -43,9 +46,7 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: 'http://localhost:9091/rsa/publicKey' #配置RSA的公钥访问地址
-  sentinel:
-    transport:
-      dashboard: 127.0.0.1:8080
+
 secure:
   ignore:
     urls: #配置白名单路径
