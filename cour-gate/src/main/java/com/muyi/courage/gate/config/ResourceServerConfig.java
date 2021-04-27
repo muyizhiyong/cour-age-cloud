@@ -4,7 +4,7 @@ import cn.hutool.core.util.ArrayUtil;
 import com.muyi.courage.gate.component.RestAuthenticationEntryPoint;
 import com.muyi.courage.gate.component.RestfulAccessDeniedHandler;
 import com.muyi.courage.gate.filter.IgnoreUrlsRemoveJwtFilter;
-import com.muyi.courage.gate.security.AuthorizationManager;
+import com.muyi.courage.gate.authorization.AuthorizationManager;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

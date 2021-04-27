@@ -9,9 +9,9 @@
 
 #依赖
 已完成注入：
-- Spring Cloud Version : 2020.0
-- Spring Cloud Alibaba Version : 2021.1
-- Spring Boot Version : 2.4.2.RELEASE
+- Spring Cloud Version : Hoxton.SR
+- Spring Cloud Alibaba Version : 2.2.0.RELEASE
+- Spring Boot Version : 2.3.0.RELEASE
 - Nacos Version : 1.4.1
 - Sentinel Version: 1.8.0
 未注入：

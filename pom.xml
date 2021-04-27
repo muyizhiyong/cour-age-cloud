@@ -13,12 +13,14 @@
         <module>cour-infrastructure</module>
         <module>cour-auth</module>
         <module>cour-common</module>
+        <module>cour-api</module>
+        <module>cour-oauth</module>
     </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.2</version>
+        <version>2.3.0.RELEASE</version>
     </parent>
 
     <properties>
@@ -26,9 +28,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compile.source>1.8</maven.compile.source>
         <maven.compile.target>1.8</maven.compile.target>
-        <spring-boot.version>2.4.2</spring-boot.version>
-        <spring-cloud.version>2020.0.0</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
+
         <dubbo-version>2.7.8</dubbo-version>
         <commons-io-version>2.6</commons-io-version>
         <fastjson-version>1.2.72</fastjson-version>
@@ -36,13 +39,13 @@
         <knife4j.version>2.0.2</knife4j.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>aliyun</id>
-            <name>aliyun</name>
-            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>aliyun</id>-->
+<!--            <name>aliyun</name>-->
+<!--            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
     <dependencies>
         <dependency>
@@ -120,7 +123,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.18</version>
+                <version>1.18.12</version>
             </dependency>
 
 

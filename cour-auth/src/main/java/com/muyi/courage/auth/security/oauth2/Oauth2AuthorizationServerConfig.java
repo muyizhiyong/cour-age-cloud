@@ -140,8 +140,10 @@ class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapt
 //		my-client-1:12345678  -->  bXktY2xpZW50LTE6MTIzNDU2Nzg=
 //		mobile:12345678 	  -->  bW9iaWxlOjEyMzQ1Njc4
 
-		Jwt decode = JwtHelper.decode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTEzNjYxMTIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiJlNTk4MTU4ZS00OWJlLTQwNjgtYTdiNi02NDcwNDE5Y2E3NDAiLCJjbGllbnRfaWQiOiJteS1jbGllbnQtMSIsInNjb3BlIjpbImFsbCJdfQ.fZqMGddQM00gaUAJKtb4ly4sXAhiiGPCjvM65y2sYAc");
-		System.out.println(decode);
+		Jwt decode = JwtHelper.decode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk1MDM2NTksInVzZXJfbmFtZSI6ImFkbWluIiwianRpIjoiZmQwMjhiZjUtMDUyYi00YzMwLWE3ODktYzNjZjM3Zjg1OGQzIiwiY2xpZW50X2lkIjoicGMtd2ViIiwic2NvcGUiOlsiYWxsIl0sImF0aSI6IjQzM2M3MWM4LWRjZmYtNDZjMi05ZjljLWUzN2RhZDA0NGU3OSJ9.cLFZe45H1LQoXnRw1WGt2vJGnaWGzRzHrloeWHm_1Cs");
+				System.out.println(decode);
+//		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTEzNjYxMTIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiJlNTk4MTU4ZS00OWJlLTQwNjgtYTdiNi02NDcwNDE5Y2E3NDAiLCJjbGllbnRfaWQiOiJteS1jbGllbnQtMSIsInNjb3BlIjpbImFsbCJdfQ.fZqMGddQM00gaUAJKtb4ly4sXAhiiGPCjvM65y2sYAc");
+//
 //		{"alg":"HS256","typ":"JWT"} {"exp":1551366112,"user_name":"admin","authorities":["ROLE_ADMIN"],"jti":"e598158e-49be-4068-a7b6-6470419ca740","client_id":"my-client-1","scope":["all"]} [32 crypto bytes]
 
 		boolean secret = new BCryptPasswordEncoder().matches("12345678", "$2a$10$0jyHr4rGRdQw.X9mrLkVROdQI8.qnWJ1Sl8ly.yzK0bp06aaAkL9W");
