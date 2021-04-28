@@ -2,7 +2,6 @@ package com.muyi.courage.oauth.constant;
 
 /**
  * Redis常量
- * Created by macro on 2020/6/19.
  */
 public class RedisConstant {
 

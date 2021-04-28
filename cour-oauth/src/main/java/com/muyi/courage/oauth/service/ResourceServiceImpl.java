@@ -13,7 +13,6 @@ import java.util.TreeMap;
 
 /**
  * 资源与角色匹配关系管理业务类
- * Created by macro on 2020/6/19.
  */
 @Service
 public class ResourceServiceImpl {
@@ -24,6 +23,7 @@ public class ResourceServiceImpl {
 
     @PostConstruct
     public void initData() {
+        //TODO 角色与资源关系改造
         resourceRolesMap = new TreeMap<>();
         resourceRolesMap.put("/api/hello", CollUtil.toList("ADMIN"));
         resourceRolesMap.put("/api/user/currentUser", CollUtil.toList("ADMIN", "TEST"));

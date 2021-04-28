@@ -41,11 +41,15 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //TODO 改造点，使用持久化数据
+
         List<UserDTO> findUserList = userList.stream().filter(item -> item.getUsername().equals(username)).collect(Collectors.toList());
         if (CollUtil.isEmpty(findUserList)) {
             throw new UsernameNotFoundException(MessageConstant.USERNAME_PASSWORD_ERROR);
         }
         SecurityUser securityUser = new SecurityUser(findUserList.get(0));
+
+
         if (!securityUser.isEnabled()) {
             throw new DisabledException(MessageConstant.ACCOUNT_DISABLED);
         } else if (!securityUser.isAccountNonLocked()) {

@@ -6,7 +6,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.muyi.courage.common.dto.DTO;
 import com.muyi.courage.auth.dto.LoginResultDTO;
 import com.muyi.courage.auth.dto.UserDTO;
-import com.muyi.courage.auth.service.LoginService;
 import com.muyi.courage.common.util.RetCodeEnum;
 import com.muyi.courage.auth.web.LoginResource;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +15,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +23,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -48,22 +43,22 @@ public class LoginResourceImpl implements LoginResource {
         LOCAL_PORT = port;
     }
 
-    @Resource
-    private LoginService loginService;
+//    @Resource
+//    private LoginService loginService;
 
-    @Resource
-    ConsumerTokenServices tokenServices;
+//    @Resource
+//    ConsumerTokenServices tokenServices;
 
     @Override
     @SentinelResource(value = "authLogin", blockHandler = "handleException", blockHandlerClass = {ExceptionUtil.class})
     public LoginResultDTO authLogin(UserDTO user) {
         LoginResultDTO loginResultDTO = new LoginResultDTO(RetCodeEnum.FAIL);
 
-        DTO dto = loginService.checkUser(user);
-        if (RetCodeEnum.FAIL.getCode().equals(dto.getRetCode())) {
-            loginResultDTO.setRetMsg(dto.getRetMsg());
-            return loginResultDTO;
-        }
+//        DTO dto = loginService.checkUser(user);
+//        if (RetCodeEnum.FAIL.getCode().equals(dto.getRetCode())) {
+//            loginResultDTO.setRetMsg(dto.getRetMsg());
+//            return loginResultDTO;
+//        }
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(StandardCharsets.UTF_8));
@@ -78,13 +73,15 @@ public class LoginResourceImpl implements LoginResource {
         params.add("username", user.getUserName());
         params.add("password", user.getPassword());
 
-        String clientId = "pc-web";
+        String clientId = "client-app";
         params.add("client_id", clientId);
         params.add("client_secret", user.getPassword());
 
         params.add("scopes", "all");
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity("http://127.0.0.1:" + LOCAL_PORT.trim() + "/oauth/token", requestEntity, String.class);
+//        ResponseEntity<String> response = restTemplate.postForEntity("http://127.0.0.1:" + LOCAL_PORT.trim() + "/oauth/token", requestEntity, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://127.0.0.1:" + 9093 + "/oauth/token", requestEntity, String.class);
+
         log.debug("[callback response]: {}", response);
         return createLoginResultDTO(response);
     }
@@ -120,21 +117,23 @@ public class LoginResourceImpl implements LoginResource {
             accessToken = accessToken.substring("Bearer ".length());
         }
         log.debug("[authLoginOut] accessToken :"+accessToken);
-        if (tokenServices.revokeToken(accessToken)) {
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                log.debug("Invalidating session: {}", session.getId());
-                session.invalidate();
-            }
-            SecurityContext context = SecurityContextHolder.getContext();
-            if (context != null) {
-                context.setAuthentication(null);
-            }
-            SecurityContextHolder.clearContext();
-            return new DTO(RetCodeEnum.SUCCEED);
-        } else {
-            return new DTO(RetCodeEnum.FAIL);
-        }
+//        if (tokenServices.revokeToken(accessToken)) {
+//            HttpSession session = request.getSession(false);
+//            if (session != null) {
+//                log.debug("Invalidating session: {}", session.getId());
+//                session.invalidate();
+//            }
+//            SecurityContext context = SecurityContextHolder.getContext();
+//            if (context != null) {
+//                context.setAuthentication(null);
+//            }
+//            SecurityContextHolder.clearContext();
+//            return new DTO(RetCodeEnum.SUCCEED);
+//        } else {
+//            return new DTO(RetCodeEnum.FAIL);
+//        }
+//        return new DTO(RetCodeEnum.SUCCEED);
+        return new DTO(RetCodeEnum.FAIL);
     }
 
 
