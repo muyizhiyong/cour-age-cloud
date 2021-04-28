@@ -1,0 +1,58 @@
+server:
+  port: 9098
+spring:
+  application:
+    name: cour-user
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 127.0.0.1:8080
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://47.100.115.11:3306/courage?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 60
+      idle-timeout: 30000
+      validation-timeout: 3000
+      connection-timeout: 60000
+    master:
+      jdbc-url: jdbc:mysql://47.100.115.11:3306/courage?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+    slave1:
+      jdbc-url: jdbc:mysql://47.100.115.11:3306/courage_slave1?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+    slave2:
+      jdbc-url: jdbc:mysql://47.100.115.11:3306/courage_slave2?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+dubbo:
+  scan:
+    base-packages: com.muyi.courage.user.service
+  protocols:
+    dubbo:
+      name: dubbo
+      port: -1
+  registry:
+    address: zookeeper://47.100.115.11:2181
+  #    address: nacos://${spring.cloud.nacos.discovery.server-addr}
+  application:
+    qos-enable: false
+

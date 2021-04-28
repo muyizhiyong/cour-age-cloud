@@ -2,12 +2,14 @@ package com.muyi.courage.api.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.muyi.courage.api.dto.UserDTO;
+import com.muyi.courage.api.service.HelloService;
 import com.sun.tools.javac.util.Convert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -16,9 +18,14 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 public class HelloResource {
+
+    @Resource
+    private HelloService helloService;
+
+
     @GetMapping("/hello")
     public String hello() {
-        return "Hello World!";
+        return  helloService.sayHello();
     }
 
     @GetMapping("/currentUser")

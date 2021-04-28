@@ -5,13 +5,14 @@ import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -47,20 +48,29 @@ public class MybatisConfig {
 		return databaseIdProvider;
 	}
 
+	@Resource(name = "myRoutingDataSource")
+	private DataSource myRoutingDataSource;
+
 	@Bean(name = "dataSqlSessionFactory")
-	public SqlSessionFactory dataSqlSessionFactory(DataSource dataSource, DatabaseIdProvider databaseIdProvider) throws Exception {
-		final SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource);
+	public SqlSessionFactory sqlSessionFactory(DatabaseIdProvider databaseIdProvider) throws Exception {
+		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+		sqlSessionFactoryBean.setDataSource(myRoutingDataSource);
 		sqlSessionFactoryBean.setDatabaseIdProvider(databaseIdProvider);
 		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER_LOCAL));
 		return sqlSessionFactoryBean.getObject();
 	}
 
+	@Bean
+	public PlatformTransactionManager platformTransactionManager() {
+		return new DataSourceTransactionManager(myRoutingDataSource);
+	}
 	@Bean(name = "mybatisTransactionManager")
 	@Primary //事务默认使用mysql数据库
-	public DataSourceTransactionManager testTransactionManager(@Qualifier("dataSource") DataSource dataSource) {
-		return new DataSourceTransactionManager(dataSource);
+	public DataSourceTransactionManager testTransactionManager() {
+		return new DataSourceTransactionManager(myRoutingDataSource);
 	}
+
+
 
 
 }
