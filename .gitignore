@@ -1,0 +1,14 @@
+.idea
+cour-api/src/test/
+cour-api/target/
+cour-auth/target/
+cour-common/src/test/
+cour-common/target/
+cour-gate/target/
+cour-infrastructure/cour-monitor/target/
+cour-infrastructure/cour-nacos/nacos/
+cour-oauth/src/test/
+cour-oauth/target/
+cour-user/src/test/
+cour-user/target/
+logs/
